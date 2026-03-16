@@ -1,0 +1,613 @@
+{
+  "pharmacy": {
+    "displayName": "Pharmacy/Drugstore",
+    "description": "Configuration for pharmacy and drugstore operations",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score based on inventory and operations",
+        "targets": {
+          "optimal": 93,
+          "attention": 92,
+          "priority": 90
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Days of Supply",
+        "description": "Average days of inventory on hand",
+        "target": 60,
+        "criticalThreshold": 30
+      },
+      "additionalMetrics": [
+        {
+          "name": "fill_rate",
+          "displayName": "Prescription Fill Rate",
+          "unit": "percentage",
+          "target": 95,
+          "description": "Percentage of prescriptions filled same-day"
+        },
+        {
+          "name": "customer_wait_time",
+          "displayName": "Avg Customer Wait Time",
+          "unit": "minutes",
+          "target": 5,
+          "description": "Average wait time at pharmacy counter"
+        },
+        {
+          "name": "immunization_rate",
+          "displayName": "Immunization Rate",
+          "unit": "per_day",
+          "target": 25,
+          "description": "Average immunizations administered per day"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "displayName": "Flu Vaccines & Immunizations",
+        "priority": "critical",
+        "seasonality": "high",
+        "dosTarget": 60,
+        "ssisTarget": 95,
+        "description": "Flu vaccine inventory and immunization services"
+      },
+      {
+        "displayName": "Cold & Flu Medicine",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 45,
+        "ssisTarget": 93,
+        "description": "Over-the-counter cold and flu remedies"
+      },
+      {
+        "displayName": "Cough Drops & Throat Relief",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 30,
+        "ssisTarget": 92,
+        "description": "Cough drops and throat lozenges"
+      },
+      {
+        "displayName": "Vitamins & Supplements",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 45,
+        "ssisTarget": 90,
+        "description": "Vitamins and nutritional supplements"
+      },
+      {
+        "displayName": "Pain Relief Medications",
+        "priority": "high",
+        "seasonality": "low",
+        "dosTarget": 60,
+        "ssisTarget": 95,
+        "description": "Analgesics and pain management products"
+      }
+    ],
+    "agent": {
+      "role": "Retail Pharmacy Operations Advisor",
+      "expertise": [
+        "inventory optimization",
+        "pharmacy operations",
+        "seasonal demand planning",
+        "patient safety",
+        "regulatory compliance"
+      ],
+      "systemPromptFile": "pharmacy-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "corporate office",
+        "customer": "patient/customer",
+        "inventory": "inventory",
+        "product": "item"
+      }
+    },
+    "demo": {
+      "scenarioName": "Cold/Flu Season Crisis",
+      "scenarioDescription": "Analyzing supply chain disruptions during peak cold and flu season"
+    }
+  },
+  
+  "grocery": {
+    "displayName": "Grocery/Supermarket",
+    "description": "Configuration for grocery store and supermarket operations",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score based on inventory and operations",
+        "targets": {
+          "optimal": 95,
+          "attention": 93,
+          "priority": 90
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Inventory Turnover",
+        "description": "Average days to sell through inventory",
+        "target": 14,
+        "criticalThreshold": 7
+      },
+      "additionalMetrics": [
+        {
+          "name": "shrink_rate",
+          "displayName": "Shrink Rate",
+          "unit": "percentage",
+          "target": 2.0,
+          "description": "Percentage of inventory lost to waste/theft"
+        },
+        {
+          "name": "checkout_time",
+          "displayName": "Avg Checkout Time",
+          "unit": "minutes",
+          "target": 3,
+          "description": "Average time customers spend in checkout"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "displayName": "Fresh Fruits & Vegetables",
+        "priority": "critical",
+        "seasonality": "high",
+        "dosTarget": 3,
+        "ssisTarget": 97,
+        "description": "Fresh fruits, vegetables, and salad items"
+      },
+      {
+        "displayName": "Dairy & Refrigerated",
+        "priority": "critical",
+        "seasonality": "low",
+        "dosTarget": 7,
+        "ssisTarget": 98,
+        "description": "Milk, cheese, yogurt, and refrigerated products"
+      },
+      {
+        "displayName": "Fresh Meat & Seafood",
+        "priority": "critical",
+        "seasonality": "medium",
+        "dosTarget": 5,
+        "ssisTarget": 96,
+        "description": "Fresh meat, poultry, and seafood"
+      },
+      {
+        "displayName": "Fresh Bakery",
+        "priority": "high",
+        "seasonality": "low",
+        "dosTarget": 2,
+        "ssisTarget": 95,
+        "description": "Fresh bread, pastries, and baked goods"
+      },
+      {
+        "displayName": "Frozen Foods",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 14,
+        "ssisTarget": 94,
+        "description": "Frozen meals, vegetables, and desserts"
+      }
+    ],
+    "agent": {
+      "role": "Grocery Operations Advisor",
+      "expertise": [
+        "fresh food management",
+        "inventory turnover",
+        "shrink reduction",
+        "seasonal planning"
+      ],
+      "systemPromptFile": "grocery-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "regional office",
+        "customer": "customer",
+        "inventory": "inventory",
+        "product": "SKU"
+      }
+    },
+    "demo": {
+      "scenarioName": "Holiday Season Demand Surge",
+      "scenarioDescription": "Managing inventory during peak holiday season shopping"
+    }
+  },
+  
+  "sporting_goods": {
+    "displayName": "Sporting Goods",
+    "description": "Configuration for sporting goods and athletic retail operations",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score based on inventory and operations",
+        "targets": {
+          "optimal": 90,
+          "attention": 85,
+          "priority": 80
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Days of Supply",
+        "description": "Average days of inventory on hand",
+        "target": 90,
+        "criticalThreshold": 45
+      },
+      "additionalMetrics": [
+        {
+          "name": "return_rate",
+          "displayName": "Return Rate",
+          "unit": "percentage",
+          "target": 15,
+          "description": "Percentage of items returned by customers"
+        },
+        {
+          "name": "online_pickup_time",
+          "displayName": "Avg Online Order Pickup Time",
+          "unit": "hours",
+          "target": 2,
+          "description": "Average time for online order fulfillment"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "displayName": "Athletic Shoes & Footwear",
+        "priority": "critical",
+        "seasonality": "medium",
+        "dosTarget": 45,
+        "ssisTarget": 95,
+        "description": "Running shoes, basketball shoes, training shoes"
+      },
+      {
+        "displayName": "Team Sports Equipment",
+        "priority": "high",
+        "seasonality": "high",
+        "dosTarget": 60,
+        "ssisTarget": 92,
+        "description": "Baseball, basketball, football, soccer equipment"
+      },
+      {
+        "displayName": "Outdoor & Camping Gear",
+        "priority": "high",
+        "seasonality": "high",
+        "dosTarget": 90,
+        "ssisTarget": 88,
+        "description": "Camping, hiking, fishing equipment"
+      },
+      {
+        "displayName": "Fitness & Exercise Equipment",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 120,
+        "ssisTarget": 85,
+        "description": "Weights, cardio equipment, accessories"
+      },
+      {
+        "displayName": "Athletic Clothing & Apparel",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 60,
+        "ssisTarget": 90,
+        "description": "Athletic wear, activewear, performance clothing"
+      }
+    ],
+    "agent": {
+      "role": "Sports Retail Operations Advisor",
+      "expertise": [
+        "seasonal demand forecasting",
+        "inventory turnover optimization",
+        "category management",
+        "markdown strategy"
+      ],
+      "systemPromptFile": "sporting-goods-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "district office",
+        "customer": "customer",
+        "inventory": "merchandise",
+        "product": "SKU"
+      }
+    },
+    "demo": {
+      "scenarioName": "Back-to-School Season Rush",
+      "scenarioDescription": "Managing inventory surge for fall sports season and school athletics"
+    }
+  },
+  
+  "beauty": {
+    "displayName": "Beauty & Cosmetics",
+    "description": "Configuration for beauty, cosmetics, and personal care retail operations",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score based on inventory and operations",
+        "targets": {
+          "optimal": 92,
+          "attention": 88,
+          "priority": 85
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Product Velocity",
+        "description": "Average days to sell new product launches",
+        "target": 30,
+        "criticalThreshold": 15
+      },
+      "additionalMetrics": [
+        {
+          "name": "loyalty_rate",
+          "displayName": "Loyalty Membership Rate",
+          "unit": "percentage",
+          "target": 65,
+          "description": "Percentage of transactions from loyalty members"
+        },
+        {
+          "name": "service_appointments",
+          "displayName": "Beauty Services Bookings",
+          "unit": "per_day",
+          "target": 15,
+          "description": "Daily beauty service appointments"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "displayName": "Prestige Makeup & Cosmetics",
+        "priority": "critical",
+        "seasonality": "medium",
+        "dosTarget": 45,
+        "ssisTarget": 94,
+        "description": "High-end makeup, foundations, and color cosmetics"
+      },
+      {
+        "displayName": "Skincare & Treatments",
+        "priority": "critical",
+        "seasonality": "low",
+        "dosTarget": 60,
+        "ssisTarget": 93,
+        "description": "Facial skincare, serums, moisturizers, treatments"
+      },
+      {
+        "displayName": "Fragrance & Perfume",
+        "priority": "high",
+        "seasonality": "high",
+        "dosTarget": 90,
+        "ssisTarget": 90,
+        "description": "Women's and men's fragrances"
+      },
+      {
+        "displayName": "Hair Care & Styling",
+        "priority": "high",
+        "seasonality": "low",
+        "dosTarget": 60,
+        "ssisTarget": 91,
+        "description": "Shampoo, conditioner, styling products"
+      },
+      {
+        "displayName": "Beauty Tools & Accessories",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 75,
+        "ssisTarget": 88,
+        "description": "Brushes, applicators, beauty devices"
+      }
+    ],
+    "agent": {
+      "role": "Beauty Retail Operations Advisor",
+      "expertise": [
+        "trend merchandising",
+        "product launch management",
+        "loyalty program optimization",
+        "prestige brand partnerships"
+      ],
+      "systemPromptFile": "beauty-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "corporate",
+        "customer": "guest/member",
+        "inventory": "merchandise",
+        "product": "SKU"
+      }
+    },
+    "demo": {
+      "scenarioName": "Holiday Gift Season",
+      "scenarioDescription": "Managing prestige beauty inventory during peak holiday gifting season"
+    }
+  },
+  
+  "apparel": {
+    "displayName": "Apparel & Fashion",
+    "description": "Configuration for clothing, fashion, and footwear retail operations",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score based on inventory and operations",
+        "targets": {
+          "optimal": 88,
+          "attention": 84,
+          "priority": 80
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Sell-Through Rate",
+        "description": "Percentage of inventory sold before markdown",
+        "target": 75,
+        "criticalThreshold": 60
+      },
+      "additionalMetrics": [
+        {
+          "name": "markdown_rate",
+          "displayName": "Markdown Rate",
+          "unit": "percentage",
+          "target": 25,
+          "description": "Percentage of items sold at discount"
+        },
+        {
+          "name": "size_efficiency",
+          "displayName": "Size Curve Efficiency",
+          "unit": "percentage",
+          "target": 85,
+          "description": "Effectiveness of size assortment vs. demand"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "displayName": "Women's Apparel",
+        "priority": "critical",
+        "seasonality": "high",
+        "dosTarget": 60,
+        "ssisTarget": 90,
+        "description": "Women's clothing, dresses, tops, bottoms"
+      },
+      {
+        "displayName": "Men's Apparel",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 75,
+        "ssisTarget": 88,
+        "description": "Men's clothing, shirts, pants, outerwear"
+      },
+      {
+        "displayName": "Footwear",
+        "priority": "critical",
+        "seasonality": "medium",
+        "dosTarget": 90,
+        "ssisTarget": 91,
+        "description": "Casual and fashion footwear"
+      },
+      {
+        "displayName": "Accessories",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 120,
+        "ssisTarget": 85,
+        "description": "Bags, jewelry, belts, hats"
+      },
+      {
+        "displayName": "Seasonal Collections",
+        "priority": "critical",
+        "seasonality": "high",
+        "dosTarget": 45,
+        "ssisTarget": 92,
+        "description": "Seasonal and trend-driven collections"
+      }
+    ],
+    "agent": {
+      "role": "Fashion Retail Operations Advisor",
+      "expertise": [
+        "trend forecasting",
+        "size assortment planning",
+        "markdown optimization",
+        "seasonal transitions"
+      ],
+      "systemPromptFile": "apparel-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "buying office",
+        "customer": "customer",
+        "inventory": "merchandise",
+        "product": "style"
+      }
+    },
+    "demo": {
+      "scenarioName": "Spring Fashion Transition",
+      "scenarioDescription": "Managing inventory transition from winter clearance to spring collections"
+    }
+  },
+  
+  "general_retail": {
+    "displayName": "General Retail",
+    "description": "Generic configuration for any retail vertical",
+    "metrics": {
+      "primaryKPI": {
+        "displayName": "Store Performance",
+        "description": "Overall store performance score",
+        "targets": {
+          "optimal": 90,
+          "attention": 85,
+          "priority": 80
+        }
+      },
+      "secondaryKPI": {
+        "displayName": "Inventory Turnover",
+        "description": "Average days of inventory on hand",
+        "target": 45,
+        "criticalThreshold": 30
+      },
+      "additionalMetrics": []
+    },
+    "categories": [
+      {
+        "displayName": "Category 1",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 45,
+        "ssisTarget": 90,
+        "description": "Primary product category"
+      },
+      {
+        "displayName": "Category 2",
+        "priority": "high",
+        "seasonality": "medium",
+        "dosTarget": 60,
+        "ssisTarget": 90,
+        "description": "Secondary product category"
+      },
+      {
+        "displayName": "Category 3",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 45,
+        "ssisTarget": 85,
+        "description": "Tertiary product category"
+      },
+      {
+        "displayName": "Category 4",
+        "priority": "medium",
+        "seasonality": "low",
+        "dosTarget": 60,
+        "ssisTarget": 85,
+        "description": "Additional product category"
+      },
+      {
+        "displayName": "Category 5",
+        "priority": "low",
+        "seasonality": "low",
+        "dosTarget": 90,
+        "ssisTarget": 80,
+        "description": "Supplementary product category"
+      }
+    ],
+    "agent": {
+      "role": "Retail Operations Advisor",
+      "expertise": [
+        "inventory management",
+        "store operations",
+        "demand forecasting",
+        "performance optimization"
+      ],
+      "systemPromptFile": "pharmacy-prompt.txt",
+      "terminology": {
+        "store": "store",
+        "location": "location",
+        "manager": "store manager",
+        "headquarters": "headquarters",
+        "customer": "customer",
+        "inventory": "inventory",
+        "product": "product"
+      }
+    },
+    "demo": {
+      "scenarioName": "Seasonal Demand Challenge",
+      "scenarioDescription": "Managing inventory during peak seasonal demand"
+    }
+  }
+}
+
