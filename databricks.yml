@@ -1,12 +1,68 @@
+# Dependencies audit (from src/app/app.yaml, src/app/app.js, src/app/lib/*.js, README.md):
+#   Genie spaces:           01f11daa8be21b1388425bb25f53f00d (default GENIE_SPACE_ID in app.js,
+#                           used by /api/genie/* endpoints in retail agent)
+#   Dashboards:             (none)
+#   UC schemas / tables:    <catalog>.<schema>.dim_demo_stores (STORE_INTEL_CATALOG/STORE_INTEL_SCHEMA;
+#                           defaults to hatim_apps_showcase_catalog.store_intelligence)
+#   Model serving endpoints:databricks-gpt-5-mini (hard-coded in app.js for retail agent)
+#   Lakebase:               yes — chat memory + saved demos via lib/lakebasePostgres.js
+#                           PGHOST/PGUSER auto-injected by Apps runtime; database defaults to demo_platform
+#   Vector Search indexes:  (none)
+#   SQL warehouse:          3fc248c3b00a28bc (showcase warehouse, per app/app.yaml HTTP path)
+#   Pipelines:              (none)
+#   Secrets:                (none; OAuth via Apps service principal)
+
 bundle:
   name: store-intelligence-france
 
+variables:
+  catalog:
+    description: Unity Catalog backing the retail intelligence tables
+    default: hatim_apps_showcase_catalog
+  warehouse_id:
+    description: SQL warehouse ID used by the Node backend
+    default: "3fc248c3b00a28bc"
+  schema_name:
+    description: UC schema for store intelligence dim/fact tables
+    default: store_intelligence
+  model_endpoint:
+    description: Foundation model endpoint for the retail agent
+    default: databricks-gpt-5-mini
+
+sync:
+  exclude:
+    - src/app/node_modules/**
+    - src/app/dist/**
+    - .build/**
+
 resources:
+  # NOTE: schema dev_hatim_binani_store_intelligence already exists in this catalog
+  # (managed by the retail-intel-platform bundle). To avoid a duplicate-create error,
+  # we don't declare it here. To take ownership in this bundle later, import the
+  # existing schema via `databricks bundle import` or rename var.schema_name.
+
   apps:
     store-intelligence-france:
       name: store-intelligence-france
-      description: "Node.js (Vite + Express) multi-tenant retail intelligence app for France."
+      description: "Multi-tenant retail intelligence (Vite + Express + deck.gl) on Databricks SQL + Lakebase."
       source_code_path: ${workspace.file_path}/src/app
+      resources:
+        - name: sql-warehouse
+          description: "SQL warehouse for store/metric reads via @databricks/sql."
+          sql_warehouse:
+            id: ${var.warehouse_id}
+            permission: CAN_USE
+        - name: model-endpoint
+          description: "Foundation model endpoint for the retail agent."
+          serving_endpoint:
+            name: ${var.model_endpoint}
+            permission: CAN_QUERY
+
+  # TODO: seed
+  # - Genie space 01f11daa8be21b1388425bb25f53f00d: replicate via the databricks-genie skill
+  #   (no first-class genie_space resource in DABs yet for cross-workspace clone).
+  # - Lakebase instance: created out-of-band; PGHOST/PGUSER are auto-injected by the Apps runtime
+  #   when the app is granted access to the Lakebase project.
 
 targets:
   dev:
@@ -15,3 +71,6 @@ targets:
     workspace:
       host: https://fe-sandbox-hatim-apps-showcase.cloud.databricks.com
       root_path: /Workspace/Users/hatim.binani@databricks.com/showcase/${bundle.name}
+    permissions:
+      - group_name: users
+        level: CAN_VIEW
