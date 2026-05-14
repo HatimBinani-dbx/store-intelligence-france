@@ -1,0 +1,17 @@
+bundle:
+  name: store-intelligence-france
+
+resources:
+  apps:
+    store-intelligence-france:
+      name: store-intelligence-france
+      description: "Node.js (Vite + Express) multi-tenant retail intelligence app for France."
+      source_code_path: ${workspace.file_path}/src/app
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://fe-sandbox-hatim-apps-showcase.cloud.databricks.com
+      root_path: /Workspace/Users/hatim.binani@databricks.com/showcase/${bundle.name}
