@@ -1,6 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+venv_*/
+.mypy_cache/
+
+# Node
 node_modules/
+dist/
+build/
+.next/
+
+# Databricks
+.databricks/
+.build/
+.bundle.lock.json
+
+# Env / secrets
 .env
 .env.local
-dist/
+.env.*.local
+*.key
+*.pem
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
 *.log
+logs/
