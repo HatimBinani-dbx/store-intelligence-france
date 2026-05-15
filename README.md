@@ -14,11 +14,11 @@ Vite + React frontend and Express + Node backend wired to Databricks SQL Warehou
 - **Backend:** Express (Node 18+) with `@databricks/sql` SDK and `pg` driver for Lakebase (in `src/app/app.js`)
 - **Data:** Unity Catalog catalog `ops_dispatch_hb_catalog`, schema `store_intelligence` (default; overridable via `STORE_INTEL_CATALOG` / `STORE_INTEL_SCHEMA`)
 - **AI/ML:** Foundation Model API via the retail agent prompt template in `src/app/lib/agentPromptTemplate.js`; Lakebase for personalization in `src/app/lib/lakebasePostgres.js`
-- **Compute:** Serverless SQL Warehouse (`7416ab09572b4762` default) + Lakebase Postgres (for chat memory and saved demos)
+- **Compute:** Serverless SQL Warehouse (`2dfc76f4d7c64141` default) + Lakebase Postgres (for chat memory and saved demos)
 
 ## Dependencies (Databricks-side)
 - [ ] Genie space: optional (agent uses prompt-template flow, not Genie)
-- [ ] SQL warehouse: required (default warehouse id `7416ab09572b4762`)
+- [ ] SQL warehouse: required (default warehouse id `2dfc76f4d7c64141`)
 - [ ] Lakebase instance: yes (used for personalization, saved demo wizards, chat memory)
 - [ ] Lakeview dashboards: none
 - [ ] SDP pipelines: none (assumes UC tables are already populated)
@@ -38,7 +38,7 @@ npm run start:dev     # concurrently runs vite dev + nodemon on app.js
 Required local env vars:
 - `DATABRICKS_SERVER_HOSTNAME` - workspace hostname (no scheme)
 - `DATABRICKS_TOKEN` - PAT
-- `DATABRICKS_HTTP_PATH` - SQL warehouse path (default `/sql/1.0/warehouses/7416ab09572b4762`)
+- `DATABRICKS_HTTP_PATH` - SQL warehouse path (default `/sql/1.0/warehouses/2dfc76f4d7c64141`)
 - `STORE_INTEL_CATALOG`, `STORE_INTEL_SCHEMA` - optional overrides
 
 ## Deployment to Databricks

@@ -32,8 +32,9 @@ variables:
 sync:
   exclude:
     - src/app/node_modules/**
-    - src/app/dist/**
     - .build/**
+  include:
+    - src/app/dist/**
 
 resources:
   # NOTE: schema dev_hatim_binani_store_intelligence already exists in this catalog
