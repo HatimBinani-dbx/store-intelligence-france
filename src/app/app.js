@@ -89,7 +89,7 @@ async function initializeDatabricksClient() {
       databricksConfig = {
         authType: 'databricks-oauth',
         host: process.env.DATABRICKS_HOST,
-        path: '/sql/1.0/warehouses/7416ab09572b4762',  // Your warehouse ID
+        path: process.env.DATABRICKS_HTTP_PATH || '/sql/1.0/warehouses/2dfc76f4d7c64141',  // Showcase warehouse
         oauthClientId: process.env.DATABRICKS_CLIENT_ID,
         oauthClientSecret: process.env.DATABRICKS_CLIENT_SECRET,
       };
@@ -109,7 +109,7 @@ async function initializeDatabricksClient() {
       databricksConfig = {
         authType: 'access-token',
         host: process.env.DATABRICKS_SERVER_HOSTNAME,
-        path: process.env.DATABRICKS_HTTP_PATH || '/sql/1.0/warehouses/7416ab09572b4762',
+        path: process.env.DATABRICKS_HTTP_PATH || '/sql/1.0/warehouses/2dfc76f4d7c64141',
         token: process.env.DATABRICKS_TOKEN,
       };
       

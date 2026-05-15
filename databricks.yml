@@ -8,7 +8,7 @@
 #   Lakebase:               yes — chat memory + saved demos via lib/lakebasePostgres.js
 #                           PGHOST/PGUSER auto-injected by Apps runtime; database defaults to demo_platform
 #   Vector Search indexes:  (none)
-#   SQL warehouse:          3fc248c3b00a28bc (showcase warehouse, per app/app.yaml HTTP path)
+#   SQL warehouse:          2dfc76f4d7c64141 (showcase warehouse, per app/app.yaml HTTP path)
 #   Pipelines:              (none)
 #   Secrets:                (none; OAuth via Apps service principal)
 
@@ -21,7 +21,7 @@ variables:
     default: hatim_apps_showcase_catalog
   warehouse_id:
     description: SQL warehouse ID used by the Node backend
-    default: "3fc248c3b00a28bc"
+    default: "2dfc76f4d7c64141"
   schema_name:
     description: UC schema for store intelligence dim/fact tables
     default: store_intelligence
@@ -69,7 +69,7 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://fe-sandbox-hatim-apps-showcase.cloud.databricks.com
+      host: https://fevm-hatim-apps-showcase.cloud.databricks.com
       root_path: /Workspace/Users/hatim.binani@databricks.com/showcase/${bundle.name}
     permissions:
       - group_name: users

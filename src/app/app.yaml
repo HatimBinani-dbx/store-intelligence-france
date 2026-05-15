@@ -1,0 +1,19 @@
+# Databricks App Configuration
+# Node.js (Vite + Express) multi-tenant retail intelligence app
+command:
+  - "sh"
+  - "-c"
+  - |
+    npm install && \
+    npm run build && \
+    node app.js
+
+env:
+  - name: NODE_ENV
+    value: production
+  - name: DATABRICKS_HTTP_PATH
+    value: /sql/1.0/warehouses/2dfc76f4d7c64141
+  - name: STORE_INTEL_CATALOG
+    value: hatim_apps_showcase_catalog
+  - name: STORE_INTEL_SCHEMA
+    value: store_intelligence

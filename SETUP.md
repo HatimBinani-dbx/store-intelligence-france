@@ -11,7 +11,7 @@ databricks bundle deploy   --profile fe-vm-hatim-apps-showcase
 
 Creates:
 - Databricks App `store-intelligence-france` with:
-  - `CAN_USE` on SQL warehouse `3fc248c3b00a28bc`
+  - `CAN_USE` on SQL warehouse `2dfc76f4d7c64141`
   - `CAN_QUERY` on serving endpoint `databricks-gpt-5-mini`
 
 NOTE: the UC schema `dev_hatim_binani_store_intelligence` already exists under `hatim_apps_showcase_catalog` (owned by the `retail-intel-platform` bundle). This bundle reuses it instead of redeclaring it. If you want to take ownership here, rename `var.schema_name` to something new or import the existing schema via `databricks bundle import`.
